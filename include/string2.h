@@ -1,5 +1,5 @@
 /*
-String2.h
+string2.h
 Extends basic string functionality.
 
 Adrian Clinansmith

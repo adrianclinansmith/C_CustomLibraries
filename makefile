@@ -1,5 +1,5 @@
 INCLUDE = -Iinclude
-SRC = impls/*.c
+SRC = src/*.c
 
 all:
 	gcc -std=c11 -Wall -g $(INCLUDE) $(SRC) maintest.c -o test

@@ -1,12 +1,12 @@
 //************************************
-// String2.c
+// string2.c
 // Extends basic string functionality.
 //
 // Adrian Clinansmith
 // April 20, 2019
 //************************************
 
-#include "String2.h"
+#include "string2.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <stdarg.h>
