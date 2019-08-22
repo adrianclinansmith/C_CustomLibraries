@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "Tests.h"
 #include "stdio2.h"
-#include "String2.h"
+#include "string2.h"
 #include "strarr.h"
 
 /*** PROTOTYPES ***/

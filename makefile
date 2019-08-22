@@ -1,17 +1,18 @@
-INCLUDE = -Iinclude
+EXEC = bin/runMe
+INCLUDE = include
 SRC = src/*.c
 
 all:
-	gcc -std=c11 -Wall -g $(INCLUDE) $(SRC) maintest.c -o test
+	gcc -std=c11 -Wall -g -I$(INCLUDE) $(SRC) -o $(EXEC)
 
-run: test
-	./test
+run: $(EXEC)
+	./$(EXEC)
 
-runmem: test
-	valgrind -v --leak-check=full --show-leak-kinds=all ./test
+runmem: $(EXEC)
+	valgrind -v --leak-check=full --show-leak-kinds=all ./$(EXEC)
 
-cppcheck: test
+cppcheck:
 	cppcheck .
 
-clean: test
-	rm test
+clean: $(EXEC)
+	rm $(EXEC)
