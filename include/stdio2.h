@@ -32,10 +32,9 @@ int fgetsto(char* str, size_t num, char* to, size_t tosize, FILE* fp);
 /*
 Reads chars from 'fp' and stores the address of the buffer containing the text
 into '*strp' until 'to' or EOF is reached, whichever happens first. The length
-of 'to' is determined by 'tosize' rather than a terminating NULL, therefore
-NULLs can be read from 'fp'. If 'to' is found, it is included in '*strp'.
-Regardless, a terminating NULL is always appended to the end of '*strp' after
-all other chars are copied.
+of 'to' is determined by 'tosize' rather than a terminating NULL. If 'to' is
+found, it is included in '*strp'. Regardless, a terminating NULL is always
+appended to the end of '*strp' after all other chars are copied.
 
 If '*strp' is NULL and/or '*num' is 0 then a buffer will be allocated and must
 be freed by the user program. If '*strp' is NULL and '*num' is non-zero then the
@@ -49,9 +48,9 @@ more will be allocated.
 In either case, on a successful call, '*strp' and '*num' are updated to reflect
 the buffer address and allocated size respectively.
 
-On success, the number of chars read is returned. The terminating NULL is not
-included. If 'strp', 'num', of 'fp' is NULL, or if memory allocation failed, -1
-is returned and no memory needs to be freed by the user program.
+On success, the number of chars read is returned. If 'strp', 'num', or 'fp' is
+NULL, -1 is returned before anything is read. If memory allocation fails, -1 is
+returned and any previously allocated memory in '*strp' is freed.
 */
 
 int getto(char** strp, size_t* num, char* to, size_t tosize, FILE* fp);

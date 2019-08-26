@@ -23,18 +23,20 @@ void readWordsEachFile(char* filepath, void* arg);
 
 int main(int argc, const char* argv[])
 {
-   size_t num = 16;
-   char* str = malloc(num);
+   const size_t CHUNK = 7;
 
-   char* to = "hon";
-   FILE* fp = fopen("textfiles/2045Words.txt", "rb");
+   size_t num = CHUNK;
+   char* str  = malloc(num);
+
+   char* to = "._";
+   FILE* fp = fopen("textfiles/nospace.txt", "rb");
 
    int n, i = 0;
    while ((n = getto(&str, &num, to, strlen(to), fp)))
    {
-      printf("str:\n\"%s\"\nnum = %zu, n = %d\n", str, num, n);
+      printf("str %d:\n\"%s\"\nnum = %zu, n = %d\n\n", i, str, num, n);
       if (n < 0) printf("error\n");
-      printf("i = %d\n\n", ++i);
+      num = CHUNK;
    }
 
    free(str);
