@@ -17,12 +17,20 @@
 
 bool endsInsensitive(const char *str, const char *subStr)
 {
+   if (!str || !subStr)
+   {
+      return !str && !subStr;
+   }
+
    int i = strlen(str)-1;
    int j = strlen(subStr)-1;
 
    while (i >= 0 && j >= 0)
    {
-      if (tolower(str[i]) != tolower(subStr[j])) break;
+      if (tolower(str[i]) != tolower(subStr[j]))
+      {
+         break;
+      }
       i--;
       j--;
    }
@@ -31,48 +39,88 @@ bool endsInsensitive(const char *str, const char *subStr)
 
 bool endsWith(const char* str, const char* subStr)
 {
+   if (!str || !subStr)
+   {
+      return !str && !subStr;
+   }
+
    int i = strlen(str)-1;
    int j = strlen(subStr)-1;
 
    while (i >= 0 && j >= 0)
    {
-     if (str[i] != subStr[j]) break;
+     if (str[i] != subStr[j])
+     {
+        break;
+     }
      i--;
      j--;
    }
    return j < 0;
 }
 
+bool equals(const char* str1, const char* str2)
+{
+   if (!str1 || !str2)
+   {
+      return !str1 && !str2;
+   }
+   return !strcmp(str1, str2);
+}
+
 bool equalsInsensitive(const char* str1, const char* str2)
 {
-   int i = 0;
-
-   while (str1[i] && str2[i])
+   if (!str1 || !str2)
    {
-      if (tolower(str1[i]) != tolower(str2[i])) break;
-      i++;
+      return !str1 && !str2;
    }
-   return !str1[i] && !str2[i];
+
+   while (*str1 && *str2)
+   {
+      if (tolower(*str1) != tolower(*str2))
+      {
+         break;
+      }
+      str1++;
+      str2++;
+   }
+   return !*str1 && !*str2;
 }
 
 bool startsInsensitive(const char *str, const char *subStr)
 {
+   if (!str || !subStr)
+   {
+      return !str && !subStr;
+   }
+
    size_t i;
 
    for (i = 0; subStr[i]; i++)
    {
-      if (tolower(str[i]) != tolower(subStr[i])) break;
+      if (tolower(str[i]) != tolower(subStr[i]))
+      {
+         break;
+      }
    }
    return (i && !subStr[i]) || (!str[0] && !subStr[0]);
 }
 
 bool startsWith(const char* str, const char* subStr)
 {
+   if (!str || !subStr)
+   {
+      return !str && !subStr;
+   }
+
    size_t i;
 
    for (i = 0; subStr[i]; i++)
    {
-      if (str[i] != subStr[i]) break;
+      if (str[i] != subStr[i])
+      {
+         break;
+      }
    }
    return (i && !subStr[i]) || (!str[0] && !subStr[0]);
 }

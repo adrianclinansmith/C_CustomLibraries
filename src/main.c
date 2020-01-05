@@ -14,34 +14,67 @@
 /*** PROTOTYPES ***/
 
 void testString2();
-void testStrarr();
 void readWordsEachFile(char* filepath, void* arg);
 
 /*** MAIN ***/
 
-//int fgetsto(char* str, size_t num, char* to, size_t tosize, FILE* fp)
-
 int main(int argc, const char* argv[])
 {
-   const size_t CHUNK = 7;
+   TEST_BOOL(endsInsensitive("one", "one"));
+   TEST_BOOL(endsInsensitive("redrum", "RUM"));
+   TEST_BOOL(endsInsensitive("RUM", "redrum"));
+   TEST_BOOL(endsInsensitive("redrum", ""));
+   TEST_BOOL(endsInsensitive("", "RUM"));
+   TEST_BOOL(endsInsensitive("redrum", NULL));
+   TEST_BOOL(endsInsensitive(NULL, "RUM"));
+   TEST_BOOL(endsInsensitive(NULL, NULL));
+   putchar('\n');
 
-   size_t num = CHUNK;
-   char* str  = malloc(num);
+   TEST_BOOL(endsWith("one", "one"));
+   TEST_BOOL(endsWith("redrum", "rum"));
+   TEST_BOOL(endsWith("rum", "redrum"));
+   TEST_BOOL(endsWith("redrum", ""));
+   TEST_BOOL(endsWith("", "rum"));
+   TEST_BOOL(endsWith("redrum", NULL));
+   TEST_BOOL(endsWith(NULL, "rum"));
+   TEST_BOOL(endsWith(NULL, NULL));
+   putchar('\n');
 
-   char* to = "._";
-   FILE* fp = fopen("textfiles/nospace.txt", "rb");
+   TEST_BOOL(equals("one", "two"));
+   TEST_BOOL(equals("one", "one"));
+   TEST_BOOL(equals("one", ""));
+   TEST_BOOL(equals("one", NULL));
+   TEST_BOOL(equals(NULL, "two"));
+   TEST_BOOL(equals(NULL, NULL));
+   putchar('\n');
 
-   int n, i = 0;
-   while ((n = getto(&str, &num, to, strlen(to), fp)))
-   {
-      printf("str %d:\n\"%s\"\nnum = %zu, n = %d\n\n", i, str, num, n);
-      if (n < 0) printf("error\n");
-      num = CHUNK;
-   }
+   TEST_BOOL(equalsInsensitive("one", "two"));
+   TEST_BOOL(equalsInsensitive("one", "ONE"));
+   TEST_BOOL(equalsInsensitive("one", ""));
+   TEST_BOOL(equalsInsensitive("one", NULL));
+   TEST_BOOL(equalsInsensitive(NULL, "two"));
+   TEST_BOOL(equalsInsensitive(NULL, NULL));
+   putchar('\n');
 
-   free(str);
-   fclose(fp);
-   return 0;
+   TEST_BOOL(startsInsensitive("one", "one"));
+   TEST_BOOL(startsInsensitive("redrum", "RED"));
+   TEST_BOOL(startsInsensitive("RED", "redrum"));
+   TEST_BOOL(startsInsensitive("redrum", ""));
+   TEST_BOOL(startsInsensitive("", "RED"));
+   TEST_BOOL(startsInsensitive("redrum", NULL));
+   TEST_BOOL(startsInsensitive(NULL, "RED"));
+   TEST_BOOL(startsInsensitive(NULL, NULL));
+   putchar('\n');
+
+   TEST_BOOL(startsWith("one", "one"));
+   TEST_BOOL(startsWith("redrum", "red"));
+   TEST_BOOL(startsWith("red", "redrum"));
+   TEST_BOOL(startsWith("redrum", ""));
+   TEST_BOOL(startsWith("", "red"));
+   TEST_BOOL(startsWith("redrum", NULL));
+   TEST_BOOL(startsWith(NULL, "red"));
+   TEST_BOOL(startsWith(NULL, NULL));
+   putchar('\n');
 }
 
 /*** PRIMARY FUNCTIONS ***/

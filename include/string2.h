@@ -18,30 +18,42 @@ April 20, 2019
 
 /*
 Returns true if str ends with case-insensitive substr, false otherwise.
+Two nulls returns true, one null returns false.
 */
 
 bool endsInsensitive(const char* str, const char* substr);
 
 /*
 Returns true if str ends with substr, false otherwise.
+Two nulls returns true, one null returns false.
 */
 
 bool endsWith(const char* str, const char* substr);
 
 /*
-Returns true if str1 and str2 are case-insensitive identical, false otherwise.
+Returns true if null-terminated str1 & str2 are identical, false otherwise.
+Two nulls returns true, one null returns false.
+*/
+
+bool equals(const char* str1, const char* str2);
+
+/*
+Returns true if null-terminated str1 & str2 are case-insensitive identical,
+false otherwise. Two nulls returns true, one null returns false.
 */
 
 bool equalsInsensitive(const char* str1, const char* str2);
 
 /*
 Returns true if str starts with case-insensitive substr, false otherwise.
+Two nulls returns true, one null returns false.
 */
 
 bool startsInsensitive(const char* str, const char* substr);
 
 /*
 Returns true if str starts with substr, false otherwise.
+Two nulls returns true, one null returns false.
 */
 
 bool startsWith(const char* str, const char* substr);
