@@ -20,6 +20,8 @@ void readWordsEachFile(char* filepath, void* arg);
 
 int main(int argc, const char* argv[])
 {
+   printBanner("string2 comparison");
+
    TEST_BOOL(endsInsensitive("one", "one"));
    TEST_BOOL(endsInsensitive("redrum", "RUM"));
    TEST_BOOL(endsInsensitive("RUM", "redrum"));
@@ -74,7 +76,39 @@ int main(int argc, const char* argv[])
    TEST_BOOL(startsWith("redrum", NULL));
    TEST_BOOL(startsWith(NULL, "red"));
    TEST_BOOL(startsWith(NULL, NULL));
+
+   printBanner("string2 inspection");
+
+   TEST_BOOL(allDigits("123"));
+   TEST_BOOL(allDigits(""));
+   TEST_BOOL(allDigits("a"));
+   TEST_BOOL(allDigits("12a"));
    putchar('\n');
+
+   TEST_INT(indexOfChar("abc", 'a'));
+   TEST_INT(indexOfChar("abc", 'c'));
+   TEST_INT(indexOfChar("abc", '\0'));
+   TEST_INT(indexOfChar("abc", 'd'));
+   TEST_INT(indexOfChar("", 'a'));
+   TEST_INT(indexOfChar("", '\0'));
+   TEST_INT(indexOfChar(NULL, 'a'));
+   putchar('\n');
+
+   TEST_BOOL(nullOrEmpty(""));
+   TEST_BOOL(nullOrEmpty(NULL));
+   TEST_BOOL(nullOrEmpty(" "));
+   TEST_BOOL(nullOrEmpty("abc"));
+   putchar('\n');
+
+   TEST_BOOL(nullOrSpace(" "));
+   TEST_BOOL(nullOrSpace(" \t\n"));
+   TEST_BOOL(nullOrSpace(" a"));
+   TEST_BOOL(nullOrSpace(NULL));
+   TEST_BOOL(nullOrSpace(""));
+   TEST_BOOL(nullOrSpace("abc"));
+   putchar('\n');
+
+   
 }
 
 /*** PRIMARY FUNCTIONS ***/

@@ -80,3 +80,10 @@ bool eachFile(const char* dirname, void (*func)(char*, void*), void* arg)
    closedir(dp);
    return true;
 }
+
+/////
+
+void printAndFree(char* call, void* func)
+{
+   
+}

@@ -189,42 +189,60 @@ bool allSpace(const char *str)
 
 int indexOfChar(const char* str, char c)
 {
+   if (!str)
+   {
+      return -2;
+   }
+
    int i;
    for (i = 0; str[i]; i++)
    {
-      if (str[i] == c) { return i; }
+      if (str[i] == c)
+      {
+         return i;
+      }
    }
-   return -1;
+   return c == '\0' ? i : -1;
+}
+
+bool nullOrEmpty(const char* str)
+{
+   return !str || *str == '\0';
 }
 
 bool nullOrSpace(const char* str)
 {
-   return str ? allSpace(str) : true;
+   return !str || allSpace(str);
 }
 
 bool strIsAll(const char* str, int (*charIs)(int))
 {
-   for (int i = 0; str[i]; i++)
+   while (*str)
    {
-      if (!charIs(str[i])) return false;
+      if (!charIs(*str))
+      {
+         return false;
+      }
+      str++;
    }
    return true;
 }
 
+/*************************/
+/*** memory allocation ***/
+/*************************/
 
+char* stralloc(const char* str)
+{
+   if (!str)
+   {
+      return NULL;
+   }
+   char* new = malloc(strlen(str)+1);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// eof
+   if (!new)
+   {
+      return NULL;
+   }
+   return strcpy(new, str);
+}

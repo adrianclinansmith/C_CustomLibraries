@@ -17,8 +17,13 @@ April 20, 2019
 /*** return value testing ***/
 /****************************/
 
+void printAndFree(char* call, void* func); // NEEDS TESTING
+
 #define TEST_BOOL(x) printf("%s returned %s\n", #x, x ? "true" : "false")
+#define TEST_INT(x) printf("%s returned %d\n", #x, x)
 #define TEST_SIZE_T(x) printf("%s returned %zu\n", #x, x)
+// NEEDS TESTING
+#define TEST_STRING(x) printAndFree(#x, x)
 
 /********************/
 /*** print banner ***/

@@ -11,6 +11,7 @@ April 20, 2019
 
 #include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 /******************/
 /*** comparison ***/
@@ -96,41 +97,55 @@ size_t cpyUntil(char* dest, const char* src, const char* until);
 /******************/
 
 /*
-Returns true if str is all digits (0 to 9), false otherwise.
+Returns true if null-terminated str is all digits, 0-9, false otherwise.
 */
 
 bool allDigits(const char* str);
 
 /*
-Returns true if str is all white-space: " \t\n\v\f\r", false otherwise.
+Returns true if null-terminated str is all white-space: " \t\n\v\f\r",
+false otherwise.
 */
 
 bool allSpace(const char* str);
 
 /*
-Returns the index of the first occurrence of c in str, or -1 if str doesn't contain c
+Returns the index of the first occurrence of character c in null-terminated str,
+or -1 if str doesn't contain the character. If str is null, -2 is returned.
 */
 
 int indexOfChar(const char* str, char c);
 
 /*
-Returns true if str is a NULL pointer or all white-space: " \t\n\v\f\r", false otherwise.
+Returns true if str is null or starts with '\0', false otherwise.
+*/
+
+bool nullOrEmpty(const char* str);
+
+/*
+Returns true if str is null or all white-space: " \t\n\v\f\r", false otherwise.
 */
 
 bool nullOrSpace(const char* str);
 
 /*
-Returns true if all characters in str evaluate to true (non-zero) by the function charIs().
-Returns false otherwise.
+Returns true if all characters in str evaluate to true (non-zero) by the
+function charIs(), excluding the terminating null, false otherwise.
+Consequently, if str starts with '\0' it returns true regardless of charIs().
 */
 
 bool strIsAll(const char* str, int (*charIs)(int));
 
+/*************************/
+/*** memory allocation ***/
+/*************************/
 
+/*
+Returns a newly allocated copy of str, which must be freed by the caller.
+If malloc fails, or str is null, null is returned.
+*/
 
-
-
-
+char* stralloc(const char* str);
 
 
 #endif
