@@ -19,11 +19,19 @@ April 20, 2019
 
 void printAndFree(char* call, void* func); // NEEDS TESTING
 
-#define TEST_BOOL(x) printf("%s returned %s\n", #x, x ? "true" : "false")
-#define TEST_INT(x) printf("%s returned %d\n", #x, x)
-#define TEST_SIZE_T(x) printf("%s returned %zu\n", #x, x)
-// NEEDS TESTING
-#define TEST_STRING(x) printAndFree(#x, x)
+#define SEE_BOOL(x) printf("%s is %s\n", #x, x ? "true" : "false")
+#define SEE_INT(x) printf("%s is %d\n", #x, x)
+#define SEE_SIZE_T(x) printf("%s is %zu\n", #x, x)
+
+#define SEE_PRIM(x) \
+   
+
+#define SEEFREE_STR(x) {                     \
+   char* s = x;                              \
+   printf("%s is %s\n", #x, s ? s : "NULL"); \
+   if (s)                                    \
+      free(s);                               \
+   }                                         \
 
 /********************/
 /*** print banner ***/
