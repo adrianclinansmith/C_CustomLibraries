@@ -12,26 +12,34 @@ April 20, 2019
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <tgmath.h>
 
 /****************************/
 /*** return value testing ***/
 /****************************/
 
-void printAndFree(char* call, void* func); // NEEDS TESTING
+#define FMT_SPEC(x) _Generic((x), bool: "d", char: "c", double: "lf",          \
+                    float: "f", int: "d", long: "d", short: "d", size_t: "zu", \
+                    default: "n")                                              \
 
-#define SEE_BOOL(x) printf("%s is %s\n", #x, x ? "true" : "false")
-#define SEE_INT(x) printf("%s is %d\n", #x, x)
-#define SEE_SIZE_T(x) printf("%s is %zu\n", #x, x)
+#define SEE_PRIM(x)           \
+{                             \
+   char fmt[11] = "%s is %";  \
+   char* spec = FMT_SPEC(x);  \
+   strcat(fmt, spec);         \
+   strcat(fmt, "\n");         \
+   printf(fmt, #x, (x));      \
+}                             \
 
-#define SEE_PRIM(x) \
-   
-
-#define SEEFREE_STR(x) {                     \
-   char* s = x;                              \
+#define SEEFREE_STR(x)                       \
+{                                            \
+   char* s = (x);                            \
    printf("%s is %s\n", #x, s ? s : "NULL"); \
    if (s)                                    \
+   {                                         \
       free(s);                               \
    }                                         \
+}                                            \
 
 /********************/
 /*** print banner ***/
