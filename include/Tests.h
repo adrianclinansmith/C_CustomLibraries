@@ -18,18 +18,32 @@ April 20, 2019
 /*** return value testing ***/
 /****************************/
 
+/*
+Macro that exchanges a datum for its format specifier as a string.
+*/
+
 #define FMT_SPEC(x)                                                            \
    _Generic((x),                                                               \
-   bool: "d", char:  "c", char *: "s",  double:  "lf", float: "f", int: "d",   \
-   long: "d", short: "d", size_t: "zu", default: "n")                          \
+   bool:      "d",   char:  "c", char *: "s",  double:      "lf",              \
+   float:     "f",   int:   "d", long:   "ld", long double: "Lf",              \
+   long long: "lld", short: "d", size_t: "zu", default:     "n")               \
+
+/*
+Macro that prints a datum's name along with it's value to the standard output.
+*/
 
 #define SEE(x)                   \
    do {                          \
-      char fmt[11] = "%s is %";  \
+      char fmt[12] = "%s is %";  \
       strcat(fmt, FMT_SPEC(x));  \
       strcat(fmt, "\n");         \
       printf(fmt, #x, (x));      \
    } while (0)                   \
+
+/*
+Macro that prints a string's name and its value to the standard output, then
+frees it.
+*/
 
 #define SEEFREE_STR(x)                          \
    do {                                         \
@@ -40,6 +54,10 @@ April 20, 2019
          free(s);                               \
       }                                         \
    } while (0)                                  \
+
+//#define STRINGIFY(x) stringifyFunc(&x, FMT_SPEC(x))
+size_t stringify(void* p, char* fmtSpec);
+
 
 /********************/
 /*** print banner ***/

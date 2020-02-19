@@ -25,30 +25,7 @@ int main(int argc, const char* argv[])
 {
    printBanner("string2 comparison");
 
-   if (1)
-      SEE(equals("one", "one"));
-   else 
-      SEE(equals("one", "Two"));
-
-   SEEFREE_STR(stralloc("hello"));
-   SEEFREE_STR(stralloc(""));
-   SEEFREE_STR(stralloc(NULL));
-   putchar('\n');
-
-   SEE(endsInsensitive(ONE, TWO));
-   SEE(endsInsensitive("one", "one"));
-   SEE(endsInsensitive("redrum", "RUM"));
-   SEE(endsInsensitive("RUM", "redrum"));
-   SEE(endsInsensitive("redrum", ""));
-   SEE(endsInsensitive("", "RUM"));
-   SEE(endsInsensitive("redrum", NULL));
-   SEE(endsInsensitive(NULL, "RUM"));
-   SEE(endsInsensitive(NULL, NULL));
-   putchar('\n');
-
-   SEE(indexOfChar("Monica", 'i'));
-   SEE(indexOfChar("Monica", 'M'));
-   SEE(indexOfChar("Monica", 'f'));
+   SEE("hello");
 }
 
 /*** PRIMARY FUNCTIONS ***/
