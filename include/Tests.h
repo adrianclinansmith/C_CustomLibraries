@@ -18,28 +18,28 @@ April 20, 2019
 /*** return value testing ***/
 /****************************/
 
-#define FMT_SPEC(x) _Generic((x), bool: "d", char: "c", double: "lf",          \
-                    float: "f", int: "d", long: "d", short: "d", size_t: "zu", \
-                    default: "n")                                              \
+#define FMT_SPEC(x)                                                            \
+   _Generic((x),                                                               \
+   bool: "d", char:  "c", char *: "s",  double:  "lf", float: "f", int: "d",   \
+   long: "d", short: "d", size_t: "zu", default: "n")                          \
 
-#define SEE_PRIM(x)           \
-{                             \
-   char fmt[11] = "%s is %";  \
-   char* spec = FMT_SPEC(x);  \
-   strcat(fmt, spec);         \
-   strcat(fmt, "\n");         \
-   printf(fmt, #x, (x));      \
-}                             \
+#define SEE(x)                   \
+   do {                          \
+      char fmt[11] = "%s is %";  \
+      strcat(fmt, FMT_SPEC(x));  \
+      strcat(fmt, "\n");         \
+      printf(fmt, #x, (x));      \
+   } while (0)                   \
 
-#define SEEFREE_STR(x)                       \
-{                                            \
-   char* s = (x);                            \
-   printf("%s is %s\n", #x, s ? s : "NULL"); \
-   if (s)                                    \
-   {                                         \
-      free(s);                               \
-   }                                         \
-}                                            \
+#define SEEFREE_STR(x)                          \
+   do {                                         \
+      char* s = (x);                            \
+      printf("%s is %s\n", #x, s ? s : "NULL"); \
+      if (s)                                    \
+      {                                         \
+         free(s);                               \
+      }                                         \
+   } while (0)                                  \
 
 /********************/
 /*** print banner ***/

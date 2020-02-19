@@ -11,7 +11,8 @@
 #include "string2.h"
 #include "strarr.h"
 
-
+#define ONE "one"
+#define TWO "two"
 
 /*** PROTOTYPES ***/
 
@@ -24,27 +25,30 @@ int main(int argc, const char* argv[])
 {
    printBanner("string2 comparison");
 
+   if (1)
+      SEE(equals("one", "one"));
+   else 
+      SEE(equals("one", "Two"));
 
    SEEFREE_STR(stralloc("hello"));
    SEEFREE_STR(stralloc(""));
    SEEFREE_STR(stralloc(NULL));
-
-
-   char testStrs[2][5] = { "one", "two" };
-   SEE_PRIM(endsInsensitive(testStrs[1], testStrs[2]));
-   SEE_PRIM(endsInsensitive("one", "one"));
-   SEE_PRIM(endsInsensitive("redrum", "RUM"));
-   SEE_PRIM(endsInsensitive("RUM", "redrum"));
-   SEE_PRIM(endsInsensitive("redrum", ""));
-   SEE_PRIM(endsInsensitive("", "RUM"));
-   SEE_PRIM(endsInsensitive("redrum", NULL));
-   SEE_PRIM(endsInsensitive(NULL, "RUM"));
-   SEE_PRIM(endsInsensitive(NULL, NULL));
    putchar('\n');
 
-   SEE_PRIM(indexOfChar("Monica", 'i'));
-   SEE_PRIM(indexOfChar("Monica", 'M'));
-   SEE_PRIM(indexOfChar("Monica", 'f'));
+   SEE(endsInsensitive(ONE, TWO));
+   SEE(endsInsensitive("one", "one"));
+   SEE(endsInsensitive("redrum", "RUM"));
+   SEE(endsInsensitive("RUM", "redrum"));
+   SEE(endsInsensitive("redrum", ""));
+   SEE(endsInsensitive("", "RUM"));
+   SEE(endsInsensitive("redrum", NULL));
+   SEE(endsInsensitive(NULL, "RUM"));
+   SEE(endsInsensitive(NULL, NULL));
+   putchar('\n');
+
+   SEE(indexOfChar("Monica", 'i'));
+   SEE(indexOfChar("Monica", 'M'));
+   SEE(indexOfChar("Monica", 'f'));
 }
 
 /*** PRIMARY FUNCTIONS ***/
